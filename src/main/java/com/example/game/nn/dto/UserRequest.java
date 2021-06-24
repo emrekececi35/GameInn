@@ -9,5 +9,5 @@ public class UserRequest {
     private String nicname;
     private String gender;
     private String country;
-    private String City;
+    private String city;
 }

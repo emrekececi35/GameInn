@@ -1,10 +1,14 @@
 package com.example.game.nn.service;
 
+import com.example.game.nn.model.Country;
 import com.example.game.nn.dto.CountryDto;
 import com.example.game.nn.dto.CreateUserRequest;
 import com.example.game.nn.dto.UserDto;
 import com.example.game.nn.model.User;
-import com.example.game.nn.model.Country;
+
+import com.example.game.nn.model.City;
+import com.example.game.nn.dto.CityDto;
+
 import com.example.game.nn.repository.UserRepository;
 import  org.springframework.stereotype.Service;
 
@@ -25,7 +29,8 @@ public class UserService {
         user.setUser_id(userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
-       // user.setCountry(Country.valueOf(userRequest.getCountry().name()));
+        user.setCountry(Country.valueOf(userRequest.getCountry().name()));
+        user.setCity(City.valueOf(userRequest.getCity().name()));
         userRepository.save(user);
         //User savedUser = userRepository.save(user);
 
@@ -33,7 +38,8 @@ public class UserService {
         userDto.setId(user.getUser_id());
         userDto.setNickname(user.getNickname());
         userDto.setGender(user.getGender());
-       // userDto.setCountry(CountryDto.valueOf(user.setCountry().name()));
+        userDto.setCountry(CountryDto.valueOf(user.getCountry().name()));
+        userDto.setCity(CityDto.valueOf(user.getCity().name()));
         return userDto;
     }
 }

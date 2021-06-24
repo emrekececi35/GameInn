@@ -20,8 +20,8 @@ public class User {
   private long user_id;
   private String nickname;
   private String gender;
-  private String country;
-  private String city;
+  private Country country;
+  private City city;
   private String updatedBy;
   private String createdBy;
   private java.sql.Timestamp updateOn;
