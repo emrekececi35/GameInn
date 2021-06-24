@@ -4,7 +4,7 @@ package com.example.game.nn.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="User")
+@Table(name = "user",schema = "public")
 public class User {
 
   @Id
@@ -18,8 +18,11 @@ public class User {
   private String createdBy;
   private java.sql.Timestamp updateOn;
   private java.sql.Timestamp createdon;
-  private String isDeleted;
+  private boolean isDeleted;
 
+  public User(){
+
+  }
 
   public long getUserId() {
     return userId;
@@ -102,11 +105,11 @@ public class User {
   }
 
 
-  public String getIsDeleted() {
+  public boolean getIsDeleted() {
     return isDeleted;
   }
 
-  public void setIsDeleted(String isDeleted) {
+  public void setIsDeleted(boolean isDeleted) {
     this.isDeleted = isDeleted;
   }
 

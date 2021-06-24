@@ -22,7 +22,7 @@ public class GameInnController {
 
 
 
-    @GetMapping
+    @GetMapping("/Users")
     public List<User> getUser(){
         return  userService.getAllUsers();
     }
