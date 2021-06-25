@@ -8,11 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserRequest{
+public class CreateUserRequest extends BaseUserRequest{
 
     private long id;
-    private String nickname;
-    private String gender;
-    private CountryDto country;
-    private  CityDto city;
 }

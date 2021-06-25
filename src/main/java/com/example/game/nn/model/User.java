@@ -12,21 +12,26 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@ToString
+
 
 public class User {
 
+  @Column(nullable = false)
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long user_id;
+  private Integer user_id;
   private String nickname;
   private String gender;
+  @Enumerated
   private Country country;
+  @Enumerated
   private City city;
   private String updatedBy;
   private String createdBy;
   private java.sql.Timestamp updateOn;
   private java.sql.Timestamp createdon;
-  private boolean isDeleted;
+  private boolean is_deleted;
 
 
 

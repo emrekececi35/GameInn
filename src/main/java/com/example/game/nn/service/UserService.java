@@ -1,13 +1,10 @@
 package com.example.game.nn.service;
 
+import com.example.game.nn.dto.*;
 import com.example.game.nn.model.Country;
-import com.example.game.nn.dto.CountryDto;
-import com.example.game.nn.dto.CreateUserRequest;
-import com.example.game.nn.dto.UserDto;
 import com.example.game.nn.model.User;
 
 import com.example.game.nn.model.City;
-import com.example.game.nn.dto.CityDto;
 
 import com.example.game.nn.repository.UserRepository;
 import  org.springframework.stereotype.Service;
@@ -19,14 +16,15 @@ import java.util.*;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
+    private final UserDtoConvert userDtoConvert;
+    public UserService(UserRepository userRepository, UserDtoConvert userDtoConvert) {
         this.userRepository = userRepository;
+        this.userDtoConvert = userDtoConvert;
     }
 
     public UserDto createUser(CreateUserRequest userRequest) {
         User user = new User();
-        user.setUser_id(userRequest.getId());
+        user.setUser_id((int) userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
         user.setCountry(Country.valueOf(userRequest.getCountry().name()));
@@ -34,13 +32,49 @@ public class UserService {
         userRepository.save(user);
         //User savedUser = userRepository.save(user);
 
-        UserDto userDto= new UserDto();
-        userDto.setId(user.getUser_id());
-        userDto.setNickname(user.getNickname());
-        userDto.setGender(user.getGender());
-        userDto.setCountry(CountryDto.valueOf(user.getCountry().name()));
-        userDto.setCity(CityDto.valueOf(user.getCity().name()));
-        return userDto;
+
+        return userDtoConvert.convert(user);
+    }
+
+    public List<UserDto> getAllUsers() {
+        List<User> userList = userRepository.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        for(User user : userList) {
+            userDtoList.add(userDtoConvert.convert(user));
+        }
+            return userDtoList;
+    }
+
+    public UserDto getUserById(Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        return userOptional.map(userDtoConvert::convert).orElse(new UserDto());
+    }
+
+    public UserDto deleteUser(Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        userOptional.ifPresent(user -> {
+
+            user.set_deleted(true);
+            userRepository.save(user);
+        });
+        return userOptional.map(userDtoConvert::convert).orElse(new UserDto());
+    }
+
+    public UserDto updateUser(Integer id, UpdateUserRequest userRequest) {
+
+        Optional<User> userOptional = userRepository.findById(id);
+
+        userOptional.ifPresent(user -> {
+
+            user.setNickname(userRequest.getNickname());
+            user.setGender(userRequest.getGender());
+            user.setCountry(Country.valueOf(userRequest.getCountry().name()));
+            user.setCity(City.valueOf(userRequest.getCity().name()));
+            userRepository.save(user);
+        });
+        return userOptional.map(userDtoConvert::convert).orElse(new UserDto());
+
     }
 }
     /*private final UserRepository userRepository;

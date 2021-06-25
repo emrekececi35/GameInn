@@ -1,8 +1,7 @@
 package com.example.game.nn.dto;
 
-
-import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,12 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class BaseUserRequest {
 
-    private Integer id;
     private String nickname;
     private String gender;
     private CountryDto country;
     private  CityDto city;
-    private boolean is_deleted;
 }
