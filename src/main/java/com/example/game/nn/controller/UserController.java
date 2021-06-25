@@ -36,10 +36,10 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping("/delete/{id}")
     public ResponseEntity<UserDto>deleteUser(@PathVariable Integer id){
 
-        return ResponseEntity.ok().build();//void de build
+        return ResponseEntity.ok(userService.deleteUser(id));//void de build
     }
 
     @PatchMapping("/{id}")
