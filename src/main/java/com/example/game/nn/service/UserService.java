@@ -41,7 +41,9 @@ public class UserService {
         List<UserDto> userDtoList = new ArrayList<>();
 
         for(User user : userList) {
-            userDtoList.add(userDtoConvert.convert(user));
+            if(!user.is_deleted()) {
+                userDtoList.add(userDtoConvert.convert(user));
+            }
         }
             return userDtoList;
     }
