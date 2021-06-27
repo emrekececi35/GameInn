@@ -31,7 +31,7 @@ public class User {
   private String nickname;
   private String gender;
 
-  private String country;
+  private long country_id;
 
   @LastModifiedBy
   @Column(name="updated_by")

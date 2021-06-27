@@ -31,9 +31,10 @@ public class UserService {
         user.setUser_id((int) userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
-        user.setCountry(userRequest.getCountry());
+        user.setCountry_id(userRequest.getCountry_id());
 
-        country.setCountryName(userRequest.getCountry());
+        country.setCountryName(userRequest.setC);
+
 
 
         countryRepository.save(country);

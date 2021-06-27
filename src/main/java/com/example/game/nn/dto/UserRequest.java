@@ -8,6 +8,6 @@ public class UserRequest {
     private Integer user_id;;
     private String nickname;
     private String gender;
-    private String country;
+    private long country_id;
 
 }

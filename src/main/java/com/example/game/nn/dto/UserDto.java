@@ -16,7 +16,7 @@ public class UserDto {
     private Integer id;
     private String nickname;
     private String gender;
-    private String country;
+    private long country_id;
 
     private Date createdon;
     private Date updatedon;

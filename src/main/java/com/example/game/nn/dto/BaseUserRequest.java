@@ -9,5 +9,5 @@ public class BaseUserRequest {
 
     private String nickname;
     private String gender;
-    private String country;
+    private long country_id;
 }

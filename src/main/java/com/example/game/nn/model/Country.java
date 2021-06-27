@@ -15,6 +15,8 @@ public class Country {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
+  private long id;
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
   private long country_id;
   private String countryName;
   @OneToMany
