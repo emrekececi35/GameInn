@@ -5,9 +5,10 @@ import java.util.List;
 
 @Data
 public class UserRequest {
-    private List<Integer>userIdList;
-    private String nicname;
+    private Integer user_id;;
+    private String nickname;
     private String gender;
-    private String country;
-    private String city;
+    private java.sql.Timestamp createdon;
+    private java.sql.Timestamp updatedon;
+
 }

@@ -7,9 +7,11 @@ import com.example.game.nn.model.User;
 import com.example.game.nn.model.City;
 
 import com.example.game.nn.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import  org.springframework.stereotype.Service;
 
 
+import java.sql.Timestamp;
 
 import java.util.*;
 
@@ -24,11 +26,12 @@ public class UserService {
 
     public UserDto createUser(CreateUserRequest userRequest) {
         User user = new User();
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
         user.setUser_id((int) userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
-        user.setCountry(Country.valueOf(userRequest.getCountry().name()));
-        user.setCity(City.valueOf(userRequest.getCity().name()));
+        user.setCreatedon(userRequest.getCreatedon());
+
         userRepository.save(user);
         //User savedUser = userRepository.save(user);
 
@@ -71,8 +74,6 @@ public class UserService {
 
             user.setNickname(userRequest.getNickname());
             user.setGender(userRequest.getGender());
-            user.setCountry(Country.valueOf(userRequest.getCountry().name()));
-            user.setCity(City.valueOf(userRequest.getCity().name()));
             userRepository.save(user);
         });
         return userOptional.map(userDtoConvert::convert).orElse(new UserDto());

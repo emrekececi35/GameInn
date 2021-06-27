@@ -1,18 +1,14 @@
 package com.example.game.nn.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BaseUserRequest {
 
     private String nickname;
     private String gender;
-    private CountryDto country;
-    private  CityDto city;
+    private java.sql.Timestamp createdon;
+    private java.sql.Timestamp updatedon;
 }

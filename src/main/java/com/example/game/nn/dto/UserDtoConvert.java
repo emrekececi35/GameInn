@@ -6,14 +6,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDtoConvert {
 
-    public  UserDto convert(User user){
-        UserDto userDto = new UserDto();
+   public  UserDto convert(User user){
+        return UserDto.builder()
+                .id(user.getUser_id())
+                .nickname(user.getNickname())
+                .gender(user.getGender())
+                .updatedon(user.getUpdateOn())
+                .createdon(user.getCreatedon()).build();
+
+        /*UserDto userDto = new UserDto();
         userDto.setId(user.getUser_id());
         userDto.setNickname(user.getNickname());
         userDto.setGender(user.getGender());
         userDto.setCountry(CountryDto.valueOf(user.getCountry().name()));
         userDto.setCity(CityDto.valueOf(user.getCity().name()));
-        return userDto;
+        return userDto;*/
     }
 
 }
