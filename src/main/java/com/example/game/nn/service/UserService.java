@@ -27,14 +27,16 @@ public class UserService {
 
     public UserDto createUser(CreateUserRequest userRequest) {
         User user = new User();
-
+        Country country = new Country();
         user.setUser_id((int) userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
         user.setCountry(userRequest.getCountry());
 
+        country.setCountryName(userRequest.getCountry());
 
 
+        countryRepository.save(country);
         userRepository.save(user);
         //User savedUser = userRepository.save(user);
 
