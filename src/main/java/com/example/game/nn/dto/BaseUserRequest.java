@@ -9,6 +9,5 @@ public class BaseUserRequest {
 
     private String nickname;
     private String gender;
-    private java.sql.Timestamp createdon;
-    private java.sql.Timestamp updatedon;
+    private String country;
 }

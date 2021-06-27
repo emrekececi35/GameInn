@@ -11,8 +11,8 @@ public class UserDtoConvert {
                 .id(user.getUser_id())
                 .nickname(user.getNickname())
                 .gender(user.getGender())
-                .updatedon(user.getUpdateOn())
-                .createdon(user.getCreatedon()).build();
+                .country(user.getCountry())
+                .build();
 
         /*UserDto userDto = new UserDto();
         userDto.setId(user.getUser_id());

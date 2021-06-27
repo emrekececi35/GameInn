@@ -4,10 +4,9 @@ import com.example.game.nn.dto.*;
 import com.example.game.nn.model.Country;
 import com.example.game.nn.model.User;
 
-import com.example.game.nn.model.City;
-
 import com.example.game.nn.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.game.nn.repository.CountryRepository;
+
 import  org.springframework.stereotype.Service;
 
 
@@ -18,19 +17,23 @@ import java.util.*;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final CountryRepository countryRepository;
     private final UserDtoConvert userDtoConvert;
-    public UserService(UserRepository userRepository, UserDtoConvert userDtoConvert) {
+    public UserService(UserRepository userRepository, UserDtoConvert userDtoConvert,CountryRepository countryRepository) {
         this.userRepository = userRepository;
         this.userDtoConvert = userDtoConvert;
+        this.countryRepository = countryRepository;
     }
 
     public UserDto createUser(CreateUserRequest userRequest) {
         User user = new User();
-        Timestamp ts = new Timestamp(System.currentTimeMillis());
+
         user.setUser_id((int) userRequest.getId());
         user.setNickname(userRequest.getNickname());
         user.setGender(userRequest.getGender());
-        user.setCreatedon(userRequest.getCreatedon());
+        user.setCountry(userRequest.getCountry());
+
+
 
         userRepository.save(user);
         //User savedUser = userRepository.save(user);
@@ -74,6 +77,7 @@ public class UserService {
 
             user.setNickname(userRequest.getNickname());
             user.setGender(userRequest.getGender());
+
             userRepository.save(user);
         });
         return userOptional.map(userDtoConvert::convert).orElse(new UserDto());

@@ -36,7 +36,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @PatchMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<UserDto>deleteUser(@PathVariable Integer id){
 
         return ResponseEntity.ok(userService.deleteUser(id));//void de build
